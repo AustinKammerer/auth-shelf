@@ -14,6 +14,12 @@ function ShelfPage() {
     <div className="container">
       <h2>Shelf</h2>
       <p>All of the available items can be seen here.</p>
+      <ul>
+        {items.map(item => {
+          return <li key={item.id}>{item.description}
+          <img height="200" src={item.image_url}></img></li>
+        })}
+      </ul>
     </div>
   );
 }
