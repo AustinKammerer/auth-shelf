@@ -42,3 +42,5 @@ function AddItem(props) {
     </div>
   );
 }
+
+export default AddItem;
