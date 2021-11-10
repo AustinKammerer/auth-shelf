@@ -12,7 +12,7 @@ function AddItem(props) {
     // send input data to saga
     dispatch({
       type: "ADD_ITEM",
-      payload: { description, url },
+      payload: { description, image_url: url }
     });
 
     // Clear inputs immediately for now
