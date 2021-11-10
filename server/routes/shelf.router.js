@@ -9,6 +9,7 @@ const {
  * Get all of the items on the shelf
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
+  console.log('GET REQUEST');
   let queryText = `SELECT * FROM "item"`;
   pool
     .query(queryText)
