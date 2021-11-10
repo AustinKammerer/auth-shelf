@@ -20,6 +20,8 @@ function AddItem(props) {
     setUrl("");
   };
 
+  console.log({ description, url });
+
   return (
     <div>
       <form onSubmit={addItem}>
