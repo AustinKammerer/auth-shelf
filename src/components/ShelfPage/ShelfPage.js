@@ -6,7 +6,7 @@ import AddItem from "../AddItem/AddItem.jsx";
 function ShelfPage() {
   const dispatch = useDispatch();
   const items = useSelector((store) => store.items);
-
+  const user = useSelector((store) => store.user);
   useEffect(() => {
     dispatch({ type: "FETCH_ITEMS" });
   }, [dispatch]);
@@ -20,14 +20,14 @@ function ShelfPage() {
       <h2>Shelf</h2>
       <p>All of the available items can be seen here.</p>
 
-      <AddItem />
+      {user.id && <AddItem />}
       <ul>
         {items.map((item) => {
           return (
             <li key={item.id}>
               {item.description}
               <img height="200" src={item.image_url}></img>
-              <button onClick={() => deleteItem(item.id)}>DELETE</button>
+              {user.id && <button onClick={() => deleteItem(item.id)}>DELETE</button>}
             </li>
           );
         })}

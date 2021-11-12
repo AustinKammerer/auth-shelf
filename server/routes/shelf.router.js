@@ -8,7 +8,7 @@ const {
 /**
  * Get all of the items on the shelf
  */
-router.get("/", rejectUnauthenticated, (req, res) => {
+router.get("/", (req, res) => {
   console.log('GET REQUEST');
   let queryText = `SELECT * FROM "item"`;
   pool
@@ -50,7 +50,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 /**
  * Delete an item if it's something the logged in user added
  */
-router.delete("/:id", (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   // endpoint functionality
   const queryText = `
     DELETE FROM item
