@@ -11,6 +11,10 @@ function ShelfPage() {
     dispatch({ type: "FETCH_ITEMS" });
   }, [dispatch]);
 
+  const deleteItem = (id) => {
+    dispatch({type: 'DELETE_ITEM', payload: id});
+  }
+
   return (
     <div className="container">
       <h2>Shelf</h2>
@@ -23,6 +27,7 @@ function ShelfPage() {
             <li key={item.id}>
               {item.description}
               <img height="200" src={item.image_url}></img>
+              <button onClick={() => deleteItem(item.id)}>DELETE</button>
             </li>
           );
         })}

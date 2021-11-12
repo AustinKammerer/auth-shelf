@@ -9,6 +9,7 @@ const {
  * Get all of the items on the shelf
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
+  console.log('GET REQUEST');
   let queryText = `SELECT * FROM "item"`;
   pool
     .query(queryText)
@@ -51,6 +52,21 @@ router.post("/", rejectUnauthenticated, (req, res) => {
  */
 router.delete("/:id", (req, res) => {
   // endpoint functionality
+  const queryText = `
+    DELETE FROM item
+    WHERE id = $1
+    AND user_id = $2;
+  `;
+
+  const values = [req.params.id, req.user.id];
+
+  pool.query(queryText, values)
+    .then(result => {
+      res.sendStatus(204);
+    }).catch(err => {
+      console.log(err)
+      res.sendStatus(500);
+    })
 });
 
 /**
